@@ -20,7 +20,7 @@ router.post('/api/crop', async function (req, res, next) {
         return null;
     });
     res.send({
-        path: 'http://learn-call.herokuapp.com/images/output.jpeg',
+        path: 'https://learn-call.herokuapp.com/images/output.jpeg',
         success: !!result
     });
 });
