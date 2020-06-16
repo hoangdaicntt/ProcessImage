@@ -32,6 +32,7 @@ router.get('/api/delete', function () {
     const id = url.replace('https://learn-call.herokuapp.com/images/output_', '').replace('.jpeg', '');
     const pathOutput = 'public/images/output_' + id + '.jpeg';
     fs.unlinkSync(pathOutput);
+    res.send({success: true});
 });
 
 router.post('/api/resize', async function (req, res, next) {
