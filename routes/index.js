@@ -7,8 +7,9 @@ const fs = require('fs');
 /* GET home page. */
 router.post('/api/crop', async function (req, res, next) {
     let url = req.body.pathInput;
-    const pathOutput = 'public/images/output.jpeg';
-    const pathInput = 'public/images/input.' + url.split('.')[url.split('.').length - 1];
+    const id = (new Date()).getTime();
+    const pathOutput = 'public/images/output_' + id + '.jpeg';
+    const pathInput = 'public/images/input_.' + id + url.split('.')[url.split('.').length - 1];
 
     fs.writeFileSync(pathInput, await download(url));
 
@@ -19,10 +20,18 @@ router.post('/api/crop', async function (req, res, next) {
         console.log(err);
         return null;
     });
+    fs.unlinkSync(pathInput);
     res.send({
-        path: 'https://learn-call.herokuapp.com/images/output.jpeg',
+        path: 'https://learn-call.herokuapp.com/images/output_' + id + '.jpeg',
         success: !!result
     });
+});
+
+router.get('/api/delete', function () {
+    let url = req.query.url;
+    const id = url.replace('https://learn-call.herokuapp.com/images/output_', '').replace('.jpeg', '');
+    const pathOutput = 'public/images/output_' + id + '.jpeg';
+    fs.unlinkSync(pathOutput);
 });
 
 router.post('/api/resize', async function (req, res, next) {
