@@ -27,7 +27,7 @@ router.post('/api/crop', async function (req, res, next) {
     });
 });
 
-router.get('/api/delete', function () {
+router.get('/api/delete', function (req, res, next) {
     let url = req.query.url;
     const id = url.replace('https://learn-call.herokuapp.com/images/output_', '').replace('.jpeg', '');
     const pathOutput = 'public/images/output_' + id + '.jpeg';
