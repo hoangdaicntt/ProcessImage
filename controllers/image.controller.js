@@ -75,7 +75,7 @@ module.exports = class ImageController {
                     right: 1,
                     top: 1,
                     bottom: 1,
-                    background: {r: 255, g: 0, b: 0, alpha: 1}
+                    background: {r: 254, g: 230, b: 243, alpha: 1}
                 }).toBuffer();
 
                 sharp(imageInputExtractBorder).toFile(this.pathOutput, (err, info) => {
