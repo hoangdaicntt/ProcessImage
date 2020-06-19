@@ -70,15 +70,15 @@ module.exports = class ImageController {
                     left: dataCrop.left
                 }).toBuffer();
 
-                const imageInputExtractBorder = await sharp(imageInputExtract).extend({
-                    left: 1,
-                    right: 1,
-                    top: 1,
-                    bottom: 1,
-                    background: {r: 254, g: 230, b: 243, alpha: 0}
-                }).toBuffer();
+                // const imageInputExtractBorder = await sharp(imageInputExtract).extend({
+                //     left: 1,
+                //     right: 1,
+                //     top: 1,
+                //     bottom: 1,
+                //     background: {r: 254, g: 230, b: 243, alpha: 0}
+                // }).toBuffer();
 
-                sharp(imageInputExtractBorder).toFile(this.pathOutput, (err, info) => {
+                sharp(imageInputExtract).toFile(this.pathOutput, (err, info) => {
                     if (!err) {
                         resolve(true);
                     } else {
